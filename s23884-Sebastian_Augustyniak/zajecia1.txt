@@ -1,0 +1,138 @@
+Instalacja systemu Debian:
+
+1.Najpierw pobieramy debiana ze strony www.debian.org i jak wejdziemy to od razu na
+stronie głównej pojawi się przycisk pobieranie i klikamy go. 
+
+2.Potem odapalamy virtualbox i klikamy na maszyne "nowa" i pojawi sie nam okno 
+utworz maszyne wirtualna. Mozemy sobie nazwać maszyne jak chcemy ale najprosciej 
+jest debian. Rozwijamy wersje wystepują wersje bitu 32 i 64 . Wybieramy wersje 64 bit 
+zalezy w jakiej mamy wersje systemu. Klikamy dalej nastepnie potem wybieramy rozmiar pamieci
+najlepiej jest wybrac 2048mb i dalej . Potem pojawi sie stworz wirtualny dysk twardy nic nie zmieniamy 
+po prostu dalej. Mamy do wyboru TYP PLIKU z wirtualnym dyskiem: Wybieramy VDI
+VDI - format virtualboxa 
+VHD - format pliku virtualboxa moze zawierac to samo co na partycjach fizycznych dyskow
+np pliki, foldery lub partycje. Najczesciej uzywany jako dysk maszyn virtualnych 
+VMDK -  VMware virtual disk file uzywa tego formatu z uwagi na to ze niektorzy programisci
+maja wspolne format plikow. 
+Nastepnie po kliknieciu dalej pojawi sie nam PAMIEC na fizycznym dysku twardym 
+od razu mamy zaznaczone "dynamicznie przydzielony" oznacza to jak sie stworzy dysk 
+to nie zajmuje od razu tych GB ktore ustawia sie w nastepnym kroku . tylko on zajmuje kilka MB tylko potem bedzie rusl
+jak bedzie sie cos zapisywalo 
+"Stały rozmiar" po utworzeniu dysku virtualbox automatycznie zarezerwuje pamiec virtualnego dysku i on juz bardziej rosl nie bedzie 
+Nastepnie wybieramy rozmiar mozna 16 GB ale 8 GB tez wystarczy i klimay utworz.
+
+3.Nastepnie przesuwamy kursor na debian i wybieramy ustawienia :
+- System odznaczamy floppy i naped optyczny przelanczamy sie na zakladke procesor
+i przsuwamy suwakiem na 2 bedzie troche szybciej . Sa tez roszerzone wlasciwosci 
+wlacz PAE/NX czasem jest potrzebny ale u nas nie . Opcja enable Nested VT-x/Amd-v pozwala
+przekaznie instrukcji virtualzyjnej do virtualki.
+-pamiec - wybieramy ikonke plyty "brak" po prawej stronie mamy plytke klikamy na nia 
+i klikamy na choose a disk file i wskazujemy plik iso czyli tego debiana.
+-dzwiek - wylanczamy dzwiek 
+
+SIEC:
+
+nat - najprostrza mozliwosc dostepu z systemy goscia do zewnetrznej sieci 
+
+mostkowa karta sieciowa (bridged) - czyli tybie goscia otrzymuje bezposredni dostep do sieci
+do ktorej podlaczony jest host 
+
+Siec wewnetrzna - system goscia moze komunikowac sie jedynie z systemami ktore naleza 
+do tej samej sieci wewnetrznej . Komunikacja z hostem lub inna siecia poza virtualbox jest nie mozliwa
+
+Niepodlaczona-widzi sie jedna karte sieciowa 
+
+Karta sieciowa izolowana (host-only) - komunikacja miedzy systemem goscia i hosta 
+
+sieć nat- rodzaj sieci wewnetrznej ktora umozliwia polaczenie wychodzace 
+
+rodzajowy sterownik - budowanie sieci vde czy tunelowania upd. Przydatne w sytuacjach 
+przy wykorzystaniu zewnetrznego oprogramowania do wirtualizacji sieci 
+
+Cloud network- siec w chmurze. 
+
+Nastepnie USB jest na 2.0 takiego bedziemy uzywac
+
+4.Uruchamianie maszyny mozna na kilka sposobow klikamy na uruchom i wybieramy zwykly start.
+zwykly start- czyli uruchomi maszyne normalnie
+bezglowy start - startuje maszyne ale nie pojawi sie okienko 
+oddzielny start - maszyna startuje normalnie ale mozna tez zamknac okno z wyswietlanym razem
+maszyny wirtualnej i wtedy przechodzi do trybu bezglowego. Np: jak bysmy odlaczyli monitor od komputera w serwerowni 
+po wykonaniu instalacji 
+
+5.Po odpaleniu debiania klikamy fn i f12 lub samo f12 jeszcze klikamy na przechwycic .
+AHCI controller :
+Hard disk po wybraniu tej opcji system uruchomi sie wprost z pierwszego dysku twardego nie zaleznie od tego czy jest system 
+continue booting - system uruchomi sie z domyslnego dysku twardego 
+lan - opcja do uruchomiania komuputera zdalnie (przez siec) 
+floppy - podac obraz dyskietki ktora bedzie uzyta do uruchomienie maszyny virtualnej
+cd - uruchomienie z napedu 
+Wybieramy opcje C czyli cd z powodu iso. 
+Pojawi sie nam okienko z wyborem roznych rzeczy 
+graphical install - wlancza instalator graficzny 
+advanced options - opcje przywracanie systemu itp
+install - normalna instalacja 
+help - pomoc 
+install with speech synthesis - czyli kontroler do obslugi mowy , moze sluzyc jako pobieranie informacji
+o glosach syntezy dostepnych w urzadzeniu .
+My wybieramy install i klimay enter
+
+6.Pojawi sie okienko z wyborem jezyka instalacji wybieramy jezyk angielski z uwagi 
+ze jak sie pojawia bledy to latwiej bedzie znalesc informacje dotyczace bledu.
+I praktycznie w jezyku angielskim nie pojawia sie bledy. Strzalki gora dol wybieramy opcje
+Klikamy enter. Nastepnie trzeba wybrac region z jakiego sie łonczymy i wybieramy other i potem europe
+i nastepnie poland i enter.  
+Nastepnie wybieramy klawiature czyli American English . 
+
+7. Potem podajemy nazwe systemu wewnatrz maszyny wirtualnej np debian . Tabulator i enter zeby przejsc dalej.
+Nastepnie w domain name nic nie wpisujemy i klikamy enter. 
+Nastepnie ustawiamy haslo np x lub jakies dluzsze zeby nikt nie wiedzial jakie mamy ustawione 
+Przechodzimy na opcje show password in clear i klikamy spacje pojawi sie x. 
+Tabulator i enter .
+Nastepnie znow powtarzamy haslo. 
+Kolejna rzecz czyli podajemy nazwe uzytkownika np : Seba lub cos innego . Login lepiej zeby nie mial wiecej niz 8 znakow.
+Nastepnie Podajemy login musi byc z malej litery. Zatwierdzamy. Haslo uzytkownika czyli x i potem enter.
+Instalator przechodzi do zbierana informacji o sprzecie i przechodzi do ustawienia partycji.
+
+8.Partycje:
+Manual - partycjonowanie reczne 
+Guided - schemat partycji na dysku 
+LVM - logiczne dynamiczne zarzadzanie dyskami 
+My wybieramy manual i wsciskamy enter. Wybieramy SCI2 . 
+Maksymalnie moze byc do 4 partycji glownych . 
+Wyczyszczamy partycje . I pojawi sie komunikat klikamy Yes. Nastepnie nic nie bedzie i klikamy znow to samo 
+tylko ze my tworzymy partycje i zmniejszamy o 2Gb i enter. I wybieramy partycje podstawowa i ma zaczynac sie na poczatku.
+Wybieramy partycje z 2GB i wybieramy partycje jaka chcemy czyli podstawowa lub logiczna . Wybralem Logiczna
+Wybieramy pierwsza opcje i enter i ustawiamy partycje wymiany . Wybieramy swap area. I zapisujemy wszystko. 
+Pod koniec mamy podsumowanie co zrobilismy i klikamy "koniec partycji i zapsujemy zmiany na dysku."
+I potem Czy chcemy zapisac zmiany klikamy Yes. 
+A jak wiemy ze cos robi system ikonki na plytce to oznacza sie cos sie zapisuje. 
+Trwa instalacja bardzo bardzo podstawowego systemu . 
+
+9.Wybieramy serwer z ktorego beda sciagane pakiety czyli Poland i wybieramy FTP.Task.gda.pl.
+Nastepnie mamy task sel czyli wybor co chcemy zainstalowac wlancza i wyloncza sie spacja .
+Wylanczamy srodowisko graficzne poniewaz jest duze .
+Zaznaczamy ssh server i klikamy enter . Trwa dalej instalacja.
+Potem zrobi sie sie restart virtualaboxa.
+Mamy dwie opcje do wyboru:
+Debian GNU/Linux to wybieramy 
+Advanced options for debian Gnu/Linux - opcje zaawansowane dla debian 
+Klikamy enter.
+
+10.Podajemy login uzytkownika i haslo i jestesmy zalogowani.
+Potem mozemy zainstalowac pakiet ale trzeba zaktualizowac pakiety czyli apt-get update.
+Za pomoca komendy apt search mozemy cos wyszukac .
+
+Pozdrawiam fajna lekcja z debiana. 
+
+
+
+
+
+
+ 
+
+
+
+
+
