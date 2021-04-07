@@ -1,0 +1,32 @@
+Na ćwiczeniach 21.03.2021 uczylismy sie o skryptach
+
+Robilismy zadania oraz uczylismy sie o komendach:
+Znak hash (#) oznacza komentarz, 
+
+tworzyliśmy zmienne programowe na przykład:
+zmienna=wartość - można napisać tak po prostu, ale wtedy to musi być jedno słowo.
+zmienna="wartość" - w cudzysłowach(""), może być tu kilka słów i znaków.
+zmienna='wartość' - albo w apostrofach, wtedy można przekazać  dowolny ciąg znaków nie zawierający apostrofow.
+Dla tego żeby zmienna była widoczna w podpowłokach wpisujemy komęde (export) na przykład:
+
+1)export zmienna="wartość" albo zmienna="wartość", export zmienna
+Usunięcie zmiennej środowiskowej używa sie poniższej komendy:
+export -n
+
+Żeby odczytać zawartość zmiennej można się do niej odwołać w taki sposób:
+1)$zmienna
+2)${zmienna}
+
+Również przetestowałem komende sad która służy do usuwania, wstawiania, zastępywania i znajdowania fragmetów w pliku.
+
+Dla przykłądu napiszę mały skypt który zmienia jedno słowo w pliku na drugie:
+robimy plik.txt wpisujemy do niego(trzeba uczyc sie wiecej).
+robimy skrypt - zmiana.sh
+vim zmiana.sh - otwieramy vima lub nano 
+#!/bin/bash
+zawart="musisz starac się więcej" zrobiłem zmienna 
+zmin="stara się czegoś nauczyć" zrobiłem zmienna 
+sed -e "s/${zmin}/${zawart}/g" $1 - sed szuka zawartość zmiennej "zmin" i wymienia to na zawartość zmiennej "zawart"
+./zmiana.sh plik.txt - i w tym pliku szuka i zamienia tą zawartość.
+
+Jeszcze na wykładzie była  komende sudo - ona otwiera przewileje superużytkownika(root).
