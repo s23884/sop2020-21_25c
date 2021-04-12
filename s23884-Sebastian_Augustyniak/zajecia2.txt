@@ -1,32 +1,53 @@
-Na ćwiczeniach 21.03.2021 uczylismy sie o skryptach
+Na ćwiczeniach 21.03.2021 uczylismy sie o skryptach bash 1 
 
-Robilismy zadania oraz uczylismy sie o komendach:
-Znak hash (#) oznacza komentarz, 
+1.Zadanie z kroliczkiem
 
-tworzyliśmy zmienne programowe na przykład:
-zmienna=wartość - można napisać tak po prostu, ale wtedy to musi być jedno słowo.
-zmienna="wartość" - w cudzysłowach(""), może być tu kilka słów i znaków.
-zmienna='wartość' - albo w apostrofach, wtedy można przekazać  dowolny ciąg znaków nie zawierający apostrofow.
-Dla tego żeby zmienna była widoczna w podpowłokach wpisujemy komęde (export) na przykład:
+Znak hash(#) - komentarz 
 
-1)export zmienna="wartość" albo zmienna="wartość", export zmienna
-Usunięcie zmiennej środowiskowej używa sie poniższej komendy:
-export -n
-
-Żeby odczytać zawartość zmiennej można się do niej odwołać w taki sposób:
-1)$zmienna
-2)${zmienna}
-
-Również przetestowałem komende sad która służy do usuwania, wstawiania, zastępywania i znajdowania fragmetów w pliku.
-
-Dla przykłądu napiszę mały skypt który zmienia jedno słowo w pliku na drugie:
-robimy plik.txt wpisujemy do niego(trzeba uczyc sie wiecej).
-robimy skrypt - zmiana.sh
-vim zmiana.sh - otwieramy vima lub nano 
+Na poczatku tworzymy sobie plik "nano kroliczek" klikamy enter i wlacza sie edytor tekstowy.
+Do edytora tekstowego wklejamy:
 #!/bin/bash
-zawart="musisz starac się więcej" zrobiłem zmienna 
-zmin="stara się czegoś nauczyć" zrobiłem zmienna 
-sed -e "s/${zmin}/${zawart}/g" $1 - sed szuka zawartość zmiennej "zmin" i wymienia to na zawartość zmiennej "zawart"
-./zmiana.sh plik.txt - i w tym pliku szuka i zamienia tą zawartość.
+# Skrypt wykorzystuje zaawansowane funkcje
+# systemy do tego aby narysowac kroliczka:
+echo -e " \e[m\\_/)"
+echo -e " (=[33m'\e[31m.\e[33m'\e[0m=)" i klikamy enter , zamykamy i nadejemy uprawnienia wykonywania.
 
-Jeszcze na wykładzie była  komende sudo - ona otwiera przewileje superużytkownika(root).
+chmod u+x kroliczek.sh i klikamy enter  i uruchamiamy ./kroliczek.sh i wydrukowala sie twarz kroliczka
+
+-e - przetwarzanie specjalnych znakow sterujacych 
+
+Zmiana koloru znaku:
+e[33]- kolor zolty
+e{31 - kolor czerowny
+\e[0m - zresetowanie koloru ( kolory domyslne)
+
+manulau systemowym mozna znalesc jakie sa kolory za pomoca komendy man. 
+
+echo -e "\e[31mslowo" i enter slowo wydrukowalo sie na czerwono 
+ 
+2. export  -n - usuniecie zmiennej srodowiskowej 
+$ZMIENNA  lub ${ZMIENNA} - odczyt zawartości zmiennej 
+export zmienna= wartosc albo zmienna=wartosc export zmienna - zmienna widoczna w podpowłokach 
+
+3.wpisujemy w terminal x=Tekst dluzszy i klikamy enter i bash nie wie co z tym zrobic ale mozna to naprawic za pomoca 
+x="Tekst dluzszy" i echo $x : Wyswietla tekst dluzszy  lub X=a\ b to zadziala bo ukosnik jest informacja dla basha ucieczka przed spacja i 
+enter i echo $x i wyswietli a b 
+
+W nazwach plikow i katalogow nie uzywamy spacji i polskich znakow 
+
+echo "$x" i enter dziala a b  echo '$x' jak damy w cudzyslowiach pisze to samo 
+
+$* , $@ - one potocznie zwracaja to samo ale sie roznia 
+$0 - nazwa skryptu 
+$1, $2 kolejne parametry
+$? - kod zakonczenia ostatniego polecenia 
+$$ - pid proceu biezacej powloki 
+
+echo $PATH - lista katalogow w ktorym szukane beda polecenia ktore bedziemy wpisywac 
+echo $RANDOM - wartosci pseudolosowe za kazdym razem dostajemy inne wartosci po ponownym wpisaniu 
+echo $PWD  - zawsze zwraca nam biezaca sciezke  
+echo $USER - zwraca nam numer indeksu 
+echo $HOME - sciezka do katalogu domowego
+echo $HOSTNAME - nazwa samego serwera 
+
+sed - sluzy do usuwania, znajdowania  fragmentów plikow 
