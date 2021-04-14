@@ -1,0 +1,107 @@
+Zajecia z dnia 11.04.2021 
+
+1.Case - inna nazwa do switcha , tego sie nie uzywa 
+
+Wyrazenie warunkowe - if warunek(tu podajemy warunek) 
+ 
+Lepiej pisac if warunek; then - zapis jest zwęzły i krótszy 
+
+Cwiczenie 1 :
+- tworzymy katalog i podajemy nazwe bash2 i nastepnie wchodzimy do katalogu
+-podajemy skrypt "nano zad_01.sh"
+-Kazdy skrypt powienien zaczynac sie od shebang czyli "#!/bin/bash "
+- ilosc parametrow - if [ $# -gt 1 ]; then 
+                          echo "$1";
+fi 
+
+Kazdy wiersz musi sie konczyc enterem ale wiersz musi byc pusty. i klikamy eneter
+Potem nadajemy uprawnienia wykonywalnosci : chmod u+x zad_1.sh i enter 
+i uruchamiamy ./zad_1.sh  i nic sie nie wykonwalo a zeby sie wykonalo trzeba ./zad_1.sh 1 1 
+i wyswietli nam pierwsza 1
+
+Cwiczenie 2 :
+-Sprawdzamy czy w bierzacym katalogu znajduje sie bierzacy plik config.cfg czyli zeby to sprawdzic musimy napisac instrukcje warunkową;
+#!/bin/bash   
+if  [ -f config.cfg  ]; then
+                 ./config.cfg        - uruchamiamy skrypt  , srednik ; jest poto zeby odzielic dwie instrukcje od siebie ktore sa pisane w tym samym wierszu
+elif [  $# -gt 0  ]; then  
+                    ./$1 - uruchamiamy pierwszy argument 
+else 
+                            echo "błąd"
+fi i enter na koncu 
+i nadajemy uprawnienia chmod u+x skrypt2 i potem tworzymy nowy plik ktory bedzie skryptem "touch plik" i wpisujemy cos do niego 
+i nastepnie uprawnienia chmod u+x plik i enter  i uruchamiamy ./skrypt2 i wyskoczyl blad czyli zgadza sie potem znow ./skrypt2 plik i 
+wyskoczyl ./plik czyli dziala.
+
+Cwiczenie 3 
+Tworzymy nazwe ktora sie nie konczy z koncowka .sh
+tworzymy nowy skrypt np nano zad_3.abc i enter 
+#!/bin/bash - czyli poczatek skryptu
+
+echo $0  i enter i nadajemy uprawnienia chmod u+x zad_3.abc i potem uruchamiamy skrypt ./zad_3.abc 
+tworzymy folder mkdir -p a/b/c potem cd a/b/c i nastepnie uruchamiamy zad_3.abc
+
+ls- wyswietal liste plikow
+wc - word count - zlicza znaki , słowa i linie
+
+Cwiczenie 4 
+d - katalogi 
+filtrowanie wierszy - grep  -e - wyrazenia regularne
+
+ls-l | grep -e ^ - i en i enter i dostalismy wiersze z minusem na poczatku.
+
+Zliczanie wierszy;
+ls-l | grep -e ^- | wc i enter widzimy 4 36 216
+
+
+Dowiedzialem sie ze bash obsluguje petle for , while i until. 
+
+Tablice :
+TABLICA = (element1 "elemen 2" element\3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
