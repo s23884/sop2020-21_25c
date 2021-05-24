@@ -1,0 +1,62 @@
+Wprowadzenie do Języka C
+
+1.vim - automatycznie rozróżnia typy plików po roszerzeniu 
+
+Roszerzenie dla jezyka c to c , dla jezyka c++ to cpp
+
+#include<stdio.h> - daje nam to obsluge wypisywania na konsole i czytania z konsoli 
+int main(){
+dodajemy zmienna na liczbe sumy i ja zerujemy 
+int sum=0;
+int liczba=0;
+Pętla nieskończona:  funkcja do czytania z terminala z standardowego wyjścia jest scanf(zwraca ilosc wczytanych znakow)
+while (scanf ("%d\n",  &liczba) ) > 0 ){
+sum+=liczba;
+}
+printf("Suma = %d\n", sum);
+return 0;
+
+}
+Ostatni wiersz ma byc pusty 
+
+nv - przenosi pliki 
+
+Zad2.
+Tu zmienamy return sum;
+#include<stdio.h> - daje nam to obsluge wypisywania na konsole i czytania z konsoli 
+int main(){
+dodajemy zmienna na liczbe sumy i ja zerujemy 
+int sum=0;
+int liczba=0;
+Pętla nieskończona:  funkcja do czytania z terminala z standardowego wyjścia jest scanf(zwraca ilosc wczytanych znakow)
+while (scanf ("%d\n",  &liczba) ) > 0 ){
+sum+=liczba;
+}
+printf("Suma = %d\n", sum);
+return sum;
+
+Zad3
+#include<stdio.h>
+#include<stdlib.h>
+funkcja główna int main (int argc, char** argv) lista parametrow {
+int i = 0;
+ for( i = 0; i < argc; i++)
+ printf("arg %d = %s\n", i , argv [i] );
+return 0;
+}
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(int argc, char** argv){
+int wiersze = 0;
+int aktualnyWiersz = 0;
+if (argc !=2) {
+return 1;
+}
+int wiersze = atoi(argv[1] ;
+printf("Drukuje choinke zlozona z wierszy: %d\n", wiersze);
+for(; aktualnyWiersz < wiersze; aktualnyWiersz++){
+printf("*\n");
+}
+return 0;
+}
