@@ -50,4 +50,4 @@ echo $USER - zwraca nam numer indeksu
 echo $HOME - sciezka do katalogu domowego
 echo $HOSTNAME - nazwa samego serwera 
 
-sed - sluzy do usuwania, znajdowania  fragmentów plikow 
+sed - sluzy do usuwania, znajdowania  fragmentów plikow
