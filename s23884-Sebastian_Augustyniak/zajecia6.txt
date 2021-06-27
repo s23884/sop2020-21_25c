@@ -1,0 +1,73 @@
+Sygnały i gniazda :
+
+Sygnały:
+
+1.Jezeli chce przerwac jakis program w bashu: np: cat czyli sygnał wysyłamy do procesu
+
+ctrl+c = przerywa program
+ctrl+d= zamyka strumień wejsciowy 
+
+można napisać program ktorego nie da sie zamknac ctrl+c wtedy uzyjemy ctrl+\
+
+funkcja signal - pochodzi od pliku <signal.h>  ona ma 2 argumenty numer sygnalu oraz funkcje ktora ma zostac zapisana jako 
+obsluga tego sygnalu
+
+int signium zamiast jawnie wpisywac 2 mozemy uzyc stalych w <signal.h>.
+sighandler_t handler - musze przekazac adres do funkcji ktora ma byc uruchomiona jako handler danego sygnalu.
+ta funkcja musi zwracac void. 
+
+Przyklad:
+
+#include <iostream>
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+
+using namespace std;
+
+void registerHandler();
+void signalHandler(int);
+
+int main() {
+int x = 1;
+registerHandler(); - wywolujemy rejestracje czyli signal
+
+while(x != 0) {
+// Using singlas cin doesn't block execution after first handle is triggered
+printf("Podaj 0 by zakonczyc: ");
+fflush(stdout);
+scanf("%d", &x); jak sie uruchomi scanf to program sie zatrzyma i bedzie trzeba wprowadzic znak
+}
+return 0;
+
+}
+void signalHandler(int s) {  - funkcja jest automatycznie wywoływana przez system
+registerHandler();
+cout << "Handler triggered.s = " << s << endl;
+}
+void registerHandler() { -  adres do funkcji ktora ma definicje nie zwraca nic 
+sigset_t iset; - stwór z flagami
+struct sigaction act;
+
+sigemptyset(&iset); - ustawiamy flagi na 0
+
+act.sa_handler = &signalHandler; - adres do funkcji ktora ma definicje nie zwraca nic 
+act.sa_mask = iset; 
+act.sa_flags = 0;
+
+sigaction(SIGINT, &act, NULL); - wywolujemy ta funkcje sigaction 
+
+
+2.
+zmienne sockfd, newsockfd przechowuja wartości zwrócone przez wywołąnie systemowe gniazda.
+Następnie 
+char buffer[256]; przy pomocy tego serwer odczytuje znaki z połączenia gniazda do buffora
+socket - tworzy nowe gniazdo 
+
+AF_INET - domena internetowa 
+Oczywiście funkja bzero wprowadza wszystkie wartości na 0 
+
+Listen pozwala procesowi na sluchanie w gniezdzie polaczen 
+Następnie Accept - proces jest blokowany dopoki klient nie polaczy sie z serwerem 
+
+Mozna zignorowac dana funkcje SIG_IGN czyli signal ignore - sygnal jest ignorowany 
