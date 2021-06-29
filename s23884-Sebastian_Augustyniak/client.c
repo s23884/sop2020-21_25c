@@ -3,7 +3,11 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <string.h>
 #include <netdb.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#define MAX_BUF 512
 
 
 void error(char *msg)
@@ -14,58 +18,46 @@ void error(char *msg)
 
 int main(int argc, char *argv[])
 {
-
-       int sockfd, portno,n; 
-         struct hostent *server; 
-       char buffer[256];   
-        struct sockaddr_in serv_addr, cli_addr;  
-        
-        if (argc<3)
-	{                              
-                fprintf(stderr,"Usage %s hostname port\n",argv[0]);
-                exit(0);
-        }
-         portno = atoi(argv[2]);  
-        sockfd = socket(AF_INET, SOCK_STREAM, 0); 
-        if(sockfd<0){                            
-                error("error opening sokcet");
-                
-        }
-        server == gethostbyname(argv[1]);     
-        if(server==NULL){                              
-                fprintf(stderr,"error no such Host\n");
-                exit(0);
-        }
-
-        bzero((char *) &serv_addr, sizeof(serv_addr));
-                serv_addr.sin_family = AF_INET;
-         bcopy((char *)server->h_addr,        
-        (char*)&serv_addr.sin_addr.s_addr,
-        server->h_length);      
-                
-        serv_addr.sin_port = htons(portno); 
-        if(connect(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr))<0){  
-                error("ERROR conntecting");                      
-        }
-   printf("please enter the message");   
-        bzero(buffer,256); 
-        fgets(buffer,255,stdin);
-          n = write(sockfd,buffer,strlen(buffer));
-            if (n< 0 )
-	    {
-                  error("ERROR writning to socket ");
-         }
-
-            bzero(buffer,256);
-              n = read (sockfd,buffer,255);
-        if (n< 0 )
-	{
-                  error("ERROR reading from socket");
-         }
-         printf("%s\n",buffer);
-      
+    int sockfd, connfd;
+    struct sockaddr_in servaddr, cli;
+  
+   
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd == -1) {
+        printf("socket creation failed...\n");
+        exit(0);
+    }
+    else
+        printf("Socket successfully created..\n");
+    bzero(&servaddr, sizeof(servaddr));
+  
+   
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_addr.s_addr = inet_addr(argv[1]);
+    servaddr.sin_port = htons(atoi(argv[2]));
+  
+   
+    if (connect(sockfd, (struct sockaddr*)&servaddr, sizeof(servaddr)) != 0) {
+        printf("connection with the server failed...\n");
+        exit(0);
+    }
+    else
+        printf("connected to the server..\n");
 
 
- return 0;           
+    char buff[MAX_BUF];
+    int n;
+    for (;;) {
+        bzero(buff, sizeof(buff));
+        printf("Enter filename : ");
+        n = 0;
+        while ((buff[n++] = getchar()) != '\n');
+        write(sockfd, buff, sizeof(buff));
+        bzero(buff, sizeof(buff));
+        read(sockfd, buff, sizeof(buff));
+        printf("PLIK: : %s\n", buff);
+    }
+    
+    close(sockfd);
 }
 
